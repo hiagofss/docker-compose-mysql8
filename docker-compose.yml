@@ -3,21 +3,21 @@ version: '3.3'
 volumes:
   data:
 services:
-  db:
+  mysql:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
+    restart: always
     ports:
       - "3306:3306"
     volumes:
-      - data:/var/lib/mysql
+      - ./data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=app_development
-  app:
+  phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    links:
-      - db
+    restart: always
     ports:
-      - 80:80
+      - 9090:80
     environment:
       - PMA_ARBITRARY=1
