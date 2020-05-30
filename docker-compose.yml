@@ -1,7 +1,5 @@
 
 version: '3.3'
-volumes:
-  data:
 services:
   mysql:
     image: mysql
